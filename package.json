@@ -1,0 +1,22 @@
+{
+  "name": "mitea",
+  "version": "1.0.0",
+  "description": "HackMIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgiEstonia/MiTea.git"
+  },
+  "author": "MiTea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeorgiEstonia/MiTea/issues"
+  },
+  "homepage": "https://github.com/GeorgiEstonia/MiTea#readme",
+  "dependencies": {
+    "browserify": "^17.0.0"
+  }
+}
