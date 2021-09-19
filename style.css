@@ -104,3 +104,28 @@ th, td {
   background-color: rgba(255,255,255,0.1);
 }
 
+.quiz_block {
+  height: 100%;
+  width: 100%;
+  margin-top: 2ex;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--highlight_one);
+  background: -webkit-linear-gradient(-68deg, var(--highlight_one) , var(--highlight_two));
+  background: -o-linear-gradient(-68deg, var(--highlight_one) , var(--highlight_two));
+  background: -moz-linear-gradient(-68deg, var(--highlight_one) , var(--highlight_two));
+  background: linear-gradient(-68deg, var(--highlight_one) , var(--highlight_two));
+
+  color: var(--fill_one);
+  padding: 2ex;
+}
+
+.quiz_block.h1 {
+  text-align: center;
+}
+
+#questions {
+  padding: 5ex;
+  padding-top: 1ex;
+}
+

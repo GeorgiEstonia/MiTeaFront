@@ -33,12 +33,7 @@
                 </tr>
               </thead>
               <tbody id="tbody">
-                <tr class="row100" onclick="window.location='start.html?class=Introduction%20to%20Variables&topics=print__data_types&classid=1.1_variables';">
-                  <td class="column100 column1" data-column="column1">--</td>
-                  <td class="column100 column2" data-column="column2">--</td>
-                  <td class="column100 column3" data-column="column3">--</td>
-                  <td class="column100 column4" data-column="column4">--</td>
-                </tr>
+
               </tbody>
             </table>
       </div>
@@ -52,16 +47,10 @@
       }
       function load() {
           console.log("Onload event")
-          var classes = [
-            {
-              "class_id": "1.1_variable",
-              "Class Name": "Introduction to Variables",
-              "course_name": "python101",
-              "class_foundational_topics":["print", "data_types"],
-              "class_topics":["variable"]
-            }
-          ]
-          classes.forEach(addRow);
+
+          fetch('http://216.250.119.29/hackmit2021/get_all_classes')
+            .then(response => response.json())
+            .then(data => [...new Set(data)].forEach(addRow));
       }
       window.onload = load()
   </script>

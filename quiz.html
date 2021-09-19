@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MiTea: Class Selection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+    <script src="jquery-3.5.1.min.js"></script>
+
+  </head>
+  <body>
+    <script src="dist/bundle.js"></script>
+    <div class="row d-flex justify-content-between header">
+        <span class="col-md-2">MiTea</span>
+
+    </div>
+    <div class="content d-flex justify-content-center"">
+        <div class="quiz_block col-md-10">
+            <h1>Class Name</h1>
+            <hr>
+            <div id="questions">
+
+            </div>
+            <button onclick="submit()" id="submitbtn">Submit</button>
+        </div>
+    </div>
+    <script>
+        function submit() {
+            let answers = []
+            let topics = []
+            inputs = document.querySelectorAll("input:checked")
+            for (i = 0; i < inputs.length; i++) {
+                myName = inputs[i].name.split("--")[0]
+                var index = topics.indexOf(myName)
+                if (inputs[i].value === "correct") {
+                    var corrects = 1
+                } else {
+                    var corrects = 0
+                }
+                console.log("index " + index)
+                if (index > -1) {
+                    console.log("exists")
+                    answers[index][0] = answers[index][0] + corrects
+                    answers[index][1] = answers[index][1] + 1
+                } else {
+                    console.log("doesn't exist")
+
+                    answers.push([corrects, 1])
+                    topics.push(myName)
+                }
+            }
+            console.log("output: ", answers)
+            console.log("topics: ", topics)
+            final_scores = {}
+            for (j = 0; j < topics.length; j++) {
+                final_scores[topics[j]] = answers[j][0]/answers[j][1]
+            }
+            console.log(final_scores)
+            document.querySelector("#questions").innerHTML = "<h3>Thank you for submitting your responses!</h3>"
+            document.getElementById("submitbtn").remove();
+        }
+        function addQuestion(question) {
+            const questionsBlock = document.querySelector("#questions");
+            q = `
+                <div class = "question">
+                    <h5>`+question["prompt"]+`</h5>
+                    <input type="radio" id="q`+question["number"]+`a1" value="correct" name="`+question["topic"]+`--`+question["number"]+`">
+                    <label for="q`+question["number"]+`a1">`+question["correct_answer"]+`</label><br>
+                    <input type="radio" id="q`+question["number"]+`a2" value="incorrect" name="`+question["topic"]+`--`+question["number"]+`">
+                    <label for="q`+question["number"]+`a2">`+question["incorrect_answer1"]+`</label><br>
+                    <input type="radio" id="q`+question["number"]+`a2" value="incorrect" name="`+question["topic"]+`--`+question["number"]+`">
+                    <label for="q`+question["number"]+`a2">`+question["incorrect_answer2"]+`</label><br>
+                    <input type="radio" id="q`+question["number"]+`a2" value="incorrect" name="`+question["topic"]+`--`+question["number"]+`">
+                    <label for="q`+question["number"]+`a2">`+question["incorrect_answer3"]+`</label><br><br>
+                </div>
+            `
+            questionsBlock.insertAdjacentHTML('beforeend',q);
+
+        }
+        function load() {
+          console.log("Onload event")
+          var questions = [
+            {
+              "prompt": `Bob created a variable x and assigned it a value "5" like so:
+                    x = "5"
+                    Then he did the following:
+                    y = "6"
+                    z = x+y
+                    print(z)
+                    What would the print statement show?`,
+              "correct_answer": "56",
+              "incorrect_answer1": "11",
+              "incorrect_answer2":"x+z",
+              "incorrect_answer3":"z",
+              "topic":"variables",
+              "number":1
+            },
+            {
+              "prompt": `if X:
+                    print("You can buy alcohol!")
+                else:
+                    print("You are not old enough!")
+
+                What can you replace X with, to make sure that only people of age 21 and older can buy alcohol? Let the age be stored in a variable called age.`,
+              "correct_answer": "age > 20",
+              "incorrect_answer1": "age < 20",
+              "incorrect_answer2":"age > = 20",
+              "incorrect_answer3":"X > age",
+              "topic":"print",
+              "number":2
+            },
+            {
+              "prompt": `Which number of line in the following code will print "Hello"?
+
+                a = 5
+
+                if a > 5:
+                    print('Hello')
+                else:
+                    print('Hello')`,
+              "correct_answer": "4",
+              "incorrect_answer1": "3",
+              "incorrect_answer2":"2",
+              "incorrect_answer3":"1",
+              "topic":"print",
+              "number":3
+            }
+          ]
+          questions.forEach(addQuestion);
+      }
+      window.onload = load()
+    </script>
+  </body>
+</html>
