@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/GeorgiEstonia/MiTea#readme",
   "dependencies": {
+    "@notionhq/client": "^0.3.2",
+    "bootstrap": "^5.1.1",
     "browserify": "^17.0.0"
   }
 }

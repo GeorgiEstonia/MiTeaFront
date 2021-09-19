@@ -1,0 +1,18 @@
+:root {
+    --fill_one: #172A3A;
+    --fill_two: #004346;
+    --highlight_one: #09BC8A;
+    --highlight_two: #75DDDD;
+    --neutral: hsl(255, 28%, 79%);
+    --text_color: #eaeff3;
+  }
+body {
+    background-color: var(--fill_one);
+    color: var(--text_color);
+}
+
+.header {
+  padding: 2ex;
+  background-color: var(--fill_two);
+  position: sticky;
+}
