@@ -7,19 +7,63 @@
     <title>MiTea: Class Selection</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <script src="jquery-3.5.1.min.js"></script>
+
   </head>
   <body>
     <script src="dist/bundle.js"></script>
     <div class="row d-flex justify-content-between header">
         <span class="col-md-2">MiTea</span>
         <div class="col-md-6 float-md-right menu_options">
-          <span class="col-md-2 float-md-right">Courses</span>
-          <span class="col-md-2 float-md-right">Students</span>
-          <span class="col-md-2 float-md-right">Settings</span>
+          <span class="col-md-2 float-md-right"><a href="https://www.notion.so/Databases-c053c9b886e84eed9945d76a62d97a96">Courses</a></span>
+          <span class="col-md-2 float-md-right"><a href="https://www.notion.so/Databases-c053c9b886e84eed9945d76a62d97a96">Students</a></span>
+          <span class="col-md-2 float-md-right"><a href="https://www.notion.so/Databases-c053c9b886e84eed9945d76a62d97a96">Settings</a></span>
         </div>
     </div>
     <div class="content">
-      <h1>Choose any class to start a quiz!</h1>
+      <h1>Choose any class to start the quiz!</h1>
+      <div class="table100 ver6 m-b-110">
+            <table data-vertable="ver6">
+              <thead>
+                <tr class="row100 head">
+                  <th class="column100 column1" data-column="column1">Class Name</th>
+                  <th class="column100 column2" data-column="column2">Course</th>
+                  <th class="column100 column3" data-column="column3">Foundational Topics</th>
+                  <th class="column100 column4" data-column="column4">Class Topics</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                <tr class="row100" onclick="window.location='start.html?class=Introduction%20to%20Variables&topics=print__data_types&classid=1.1_variables';">
+                  <td class="column100 column1" data-column="column1">--</td>
+                  <td class="column100 column2" data-column="column2">--</td>
+                  <td class="column100 column3" data-column="column3">--</td>
+                  <td class="column100 column4" data-column="column4">--</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
     </div>
+    <script>
+      
+      function addRow(myDictionary) {
+        const tbody = document.querySelector("tbody");
+        var row = '<tr class="row100" onclick="window.location=\'start.html?class='+myDictionary["Class Name"]+'&topics='+myDictionary["class_foundational_topics"]+'&classid='+myDictionary["class_id"]+'\';"> <td class="column100 column1" data-column="column1">'+myDictionary["Class Name"]+'</td> <td class="column100 column2" data-column="column2">'+myDictionary["course_name"]+'</td> <td class="column100 column3" data-column="column3">'+myDictionary["class_foundational_topics"]+'</td> <td class="column100 column4" data-column="column4">'+myDictionary["class_topics"]+'</td> </tr>';
+        tbody.insertAdjacentHTML('beforeend',row)
+      }
+      function load() {
+          console.log("Onload event")
+          var classes = [
+            {
+              "class_id": "1.1_variable",
+              "Class Name": "Introduction to Variables",
+              "course_name": "python101",
+              "class_foundational_topics":["print", "data_types"],
+              "class_topics":["variable"]
+            }
+          ]
+          classes.forEach(addRow);
+      }
+      window.onload = load()
+  </script>
   </body>
 </html>

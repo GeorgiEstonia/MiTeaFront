@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MiTea: Class Selection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <script src="dist/bundle.js"></script>
+    <div class="row d-flex justify-content-between header">
+        <span class="col-md-2">MiTea</span>
+        <div class="col-md-6 float-md-right menu_options">
+          <span class="col-md-2 float-md-right"><a href="https://www.notion.so/Databases-c053c9b886e84eed9945d76a62d97a96">Courses</a></span>
+          <span class="col-md-2 float-md-right"><a href="https://www.notion.so/Databases-c053c9b886e84eed9945d76a62d97a96">Students</a></span>
+          <span class="col-md-2 float-md-right"><a href="https://www.notion.so/Databases-c053c9b886e84eed9945d76a62d97a96">Settings</a></span>
+        </div>
+    </div>
+    <div class="content">
+        <h1 id="class_name">Class Name</h1>
+        <h4>Foundation topics to be tested:</h4>
+        <p class="f_topics"></p>
+        <label for="questions_number">Questions per topic (0-10):</label>
+        <input type="number" id="questions_number" name="questions_number" min="0" max="10">
+        <br>
+        <label for="questions_number">Quiz time limit (1-60 min):</label>
+        <input type="number" id="questions_number" name="questions_number" min="1" max="60">
+        <br>
+        <button onclick="postDataCreateQuiz()">Start</button>
+    </div>
+    <script>
+        const queryString = window.location.search;
+        console.log(queryString);
+        const urlParams = new URLSearchParams(queryString);
+        function load() {
+            console.log("Onload event")
+            const className = urlParams.get('class')
+            console.log("Class name " + className)
+            document.querySelector("#class_name").innerHTML = className;
+        }
+        window.onload = load()
+        function postDataCreateQuiz() {
+            const classId = urlParams.get('classid')
+            var questionsPerTopic = document.getElementById('questions_number').value;
+            console.log("classId "+classId)
+            console.log("questionsPerTopic "+questionsPerTopic)
+        }
+    </script>
+  </body>
+</html>
